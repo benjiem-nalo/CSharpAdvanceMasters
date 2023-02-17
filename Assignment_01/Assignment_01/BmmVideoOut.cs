@@ -14,7 +14,7 @@ namespace Assignment_01
         public static void VideoOutEvent(string title)
         {
             var videoOut = new BmmVideoOut();
-            //videoOut.OnTriggered += BmmMailService.Send;
+            videoOut.OnTriggered += BmmMailService.Send;
             videoOut.OnTriggered += BmmMessageService.Notify;
 
             videoOut.Triggered(title);

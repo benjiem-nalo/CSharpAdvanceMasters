@@ -26,7 +26,7 @@ namespace Session_01
             });
 
             //taking user input
-            Console.WriteLine("PLease enter video to rent:");
+            Console.WriteLine("Please enter video to rent:");
             var videoTitle = Console.ReadLine() ?? "";
             Console.WriteLine();
 
