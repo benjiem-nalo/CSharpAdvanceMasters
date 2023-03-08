@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace Assignment_03
 {
     public class InputCollections
     {
-        private Dictionary<int, object?> repo;
+        private Hashtable repo;
 
-        public InputCollections(Dictionary<int, object?> _repo)
+        public InputCollections(Hashtable _repo)
         {
             repo = _repo;
         }
@@ -25,7 +26,7 @@ namespace Assignment_03
             var s = input?.ToString();
             if (!string.IsNullOrWhiteSpace(s))
             {
-                repo?.Add(repo.Count + 1, input);
+                repo?.Add(repo.Count+1, input);
 
                 if (int.TryParse(s, out int f))
                 {
@@ -49,16 +50,23 @@ namespace Assignment_03
 
         public void DisplayList()
         {
+            ArrayList al = new ArrayList(repo.Keys);
+            al.Sort();
+
             Console.WriteLine("All inputs:");
-            repo.ToList().ForEach(i => Console.WriteLine($"{i.Key} : {i.Value}"));
-            Console.WriteLine($"Int inputs");
-            IntList.ForEach(i => Console.WriteLine($"{i}"));
-            Console.WriteLine($"Double inputs");
-            DoubleList.ForEach(i => Console.WriteLine($"{i}"));
-            Console.WriteLine($"Bool inputs");
-            BoolList.ForEach(i => Console.WriteLine($"{i}"));
-            Console.WriteLine($"String inputs");
-            StringList.ForEach(i => Console.WriteLine($"{i}"));
+            var orderedRepo = repo?.Cast<Dictionary<int,object>>().OrderBy(k => k);
+            for (int i = 0; i < al.Count; i++)
+            {
+                Console.WriteLine($"{al[i]} : {repo[al[i]]}");
+            }
+            Console.WriteLine($"Int inputs:");
+            IntList.ForEach(i => Console.WriteLine($"-->  {i}"));
+            Console.WriteLine($"Double inputs:");
+            DoubleList.ForEach(i => Console.WriteLine($"--> {i}"));
+            Console.WriteLine($"Bool inputs:");
+            BoolList.ForEach(i => Console.WriteLine($"--> {i}"));
+            Console.WriteLine($"String inputs:");
+            StringList.ForEach(i => Console.WriteLine($"--> {i}"));
         }
 
         public void ClearLists()
